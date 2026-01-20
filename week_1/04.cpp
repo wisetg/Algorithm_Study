@@ -1,32 +1,28 @@
 // https://www.acmicpc.net/problem/14579
 
-#include <iostream>;
+#include <iostream>
 using namespace std;
 
 int main() {
-    int first_num, second_num;
+    long long int first_num, second_num;
+    cin >> first_num >> second_num;
 
-    cin>>first_num>>second_num; //3, 5
-    int dummy_num=1, start_num=first_num; //1, 3
+    const long long int num = 14579;
 
-    for (int i=(second_num-first_num+1); i>0; i--) {
-        int save_num=0;
-        for (int j=1; j>0; j++)
-        {
-            save_num+=j;
-            cout<<"save is "<<save_num<<"\n";
+    long long int dummy_num = 1;
+    long long int start_num = first_num;
 
-            if (j=start_num){
-                cout<<"out"<<"\n";
-                break;
-            }
+    for (long long int i = (second_num - first_num + 1); i > 0; i--) {
+        long long int save_num = 0;
+
+        for (long long int j = 1; j <= start_num; j++) {
+            save_num += j;
         }
-        cout<<"start is "<<start_num<<"\n";
-        dummy_num=dummy_num*save_num;
-        cout<<"dummy is "<<dummy_num<<"\n";
-        start_num+=1;
 
+        dummy_num = (dummy_num * (save_num % num)) % num;
+        start_num++;
     }
 
+    cout << dummy_num << "\n";
     return 0;
 }
